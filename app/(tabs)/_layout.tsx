@@ -21,14 +21,19 @@ const TabIcon = ({ focused, icon, title }: any) => {
     );
   }
   return (
-    <View>
-      <Image source={icon} tintColor="#A8B85DB" />
+    <View className="size-full justify-center items-center mt-4 rounded-full">
+      <Image source={icon} tintColor="#A8B85DB" className="size-5" />
     </View>
   );
 };
+
 const _layout = () => {
   return (
-    <Tabs>
+    // remove the label name
+    <Tabs
+      screenOptions={{
+        tabBarShowLabel: false,
+      }}>
       <Tabs.Screen
         name="index"
         options={{
@@ -58,7 +63,7 @@ const _layout = () => {
             <TabIcon focused={focused} icon={icons.save} title="Save" />
           ),
         }}
-      />{" "}
+      />
       <Tabs.Screen
         name="profile"
         options={{
