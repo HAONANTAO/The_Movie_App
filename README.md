@@ -1,3 +1,10 @@
+<!--
+ * @Date: 1985-10-26 18:15:00
+ * @LastEditors: 陶浩南 taoaaron5@gmail.com
+ * @LastEditTime: 2025-03-16 15:55:27
+ * @FilePath: /The_Movie_App/README.md
+-->
+
 # Welcome to your Expo app 👋
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
@@ -51,49 +58,50 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
    - 在设备上摇晃可以打开开发者菜单
    - 如果连接出现问题，可以尝试使用 tunnel 连接方式：`npx expo start --tunnel`
 
-## Get started
+## 项目结构说明
 
-1. Install dependencies
+项目采用了 Expo 的标准目录结构，主要包含以下目录：
 
-   ```bash
-   npm install
-   ```
+### app 目录
 
-2. Start the app
+- 应用的主要路由和页面文件
+- `_layout.tsx`：应用的根布局组件
+- `(tabs)`：包含底部标签栏相关的页面
+  - `_layout.tsx`：标签栏的布局配置
+  - `index.tsx`：首页内容
+  - `explore.tsx`：探索页面
 
-   ```bash
-    npx expo start
-   ```
+### assets 目录
 
-In the output, you'll find options to open the app in a
+- 存放应用的静态资源文件
+- `fonts`：自定义字体文件
+- `images`：应用图标、启动图和其他图片资源
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+### components 目录
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+- 可复用的 React 组件
+- `Collapsible.tsx`：可折叠内容组件
+- `ExternalLink.tsx`：外部链接组件
+- `HapticTab.tsx`：带触感反馈的标签组件
+- `HelloWave.tsx`：波浪动画组件
+- `ParallaxScrollView.tsx`：视差滚动组件
+- `ThemedText.tsx`：主题文本组件
+- `ThemedView.tsx`：主题视图组件
+- `ui`：UI 相关组件，包含平台特定实现
 
-## Get a fresh project
+### constants 目录
 
-When you're ready, run:
+- 应用的常量配置
+- `Colors.ts`：颜色主题配置
 
-```bash
-npm run reset-project
-```
+### hooks 目录
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+- 自定义 React Hooks
+- `useColorScheme.ts`：颜色主题 Hook
+- `useThemeColor.ts`：主题颜色 Hook
 
-## Learn more
+### 配置文件
 
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+- `package.json`：项目依赖和脚本配置
+- `tsconfig.json`：TypeScript 配置
+- `app.json`：Expo 应用配置
