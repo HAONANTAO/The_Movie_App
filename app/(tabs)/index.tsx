@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-03-16 15:59:56
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-03-16 21:33:25
+ * @LastEditTime: 2025-03-16 21:43:34
  * @FilePath: /The_Movie_App/app/(tabs)/index.tsx
  */
 
@@ -10,6 +10,8 @@ import { images } from "@/constants/images";
 import { Link } from "expo-router";
 import { View, Text, Image, ScrollView } from "react-native";
 import { icons } from "@/constants/icons";
+import SearchBar from "@/components/SearchBar";
+
 export default function Index() {
   return (
     <View className="flex-1 bg-primary">
@@ -17,8 +19,17 @@ export default function Index() {
       <Image source={images.bg} className="w-full absolute z-0" />
 
       {/* scrollable content container */}
-      <ScrollView className="flex-1 px-5">
+      <ScrollView
+        className="flex-1 px-5"
+        // 表示隐藏垂直滚动条
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ minHeight: "100%", paddingBottom: 10 }}>
+        {/* top icon */}
         <Image source={icons.logo} className="w-12 h-10 mt-20 mb-5 mx-auto" />
+        {/* search bar */}
+        <View className="flex-1 mt-5">
+          <SearchBar />
+        </View>
       </ScrollView>
     </View>
   );
