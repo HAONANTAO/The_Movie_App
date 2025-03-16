@@ -1,9 +1,14 @@
 <!--
  * @Date: 1985-10-26 18:15:00
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-03-16 15:55:27
+ * @LastEditTime: 2025-03-16 16:09:28
  * @FilePath: /The_Movie_App/README.md
 -->
+
+React Native
+Expo 框架
+NativeWind(like tailwindcss)
+appwrite 后端
 
 # Welcome to your Expo app 👋
 
