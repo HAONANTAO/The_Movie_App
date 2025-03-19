@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-03-16 15:59:56
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-03-19 16:41:30
+ * @LastEditTime: 2025-03-19 17:01:11
  * @FilePath: /The_Movie_App/app/(tabs)/index.tsx
  */
 
@@ -74,7 +74,18 @@ export default function Index() {
             data={movies}
             renderItem={({ item }) => (
               <Text className="text-white text-sm">{item.title}</Text>
-            )}></FlatList>
+            )}
+            // 用于为列表中的每一项提供一个唯一的标识符（key）
+            keyExtractor={(item) => item.id.toString()}
+            numColumns={3}
+            columnWrapperStyle={{
+              justifyContent: "flex-start",
+              gap: 20,
+              paddingRight: 5,
+              marginBottom: 10,
+            }}
+            className="mt-2 pb-32"
+            scrollEnabled={false}></FlatList>
         </View>
       )}
       {/* </ScrollView> */}
