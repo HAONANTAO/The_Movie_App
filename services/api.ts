@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-03-19 14:53:42
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-03-19 15:26:09
+ * @LastEditTime: 2025-03-19 16:12:26
  * @FilePath: /The_Movie_App/services/api.ts
  */
 
@@ -17,7 +17,7 @@ export const TMDB_CONFIG = {
 // /discover/movie
 // movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc';
 
-// 根据欢迎程度获取电影(和query搜索一起用)
+// 根据欢迎程度获取电影(和search query搜索一起用)
 export const fetchMovies = async ({ query }: { query: string }) => {
   // URL to fetch
   // encode for some weird query display
