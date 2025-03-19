@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-03-16 16:47:23
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-03-19 20:19:49
+ * @LastEditTime: 2025-03-19 20:25:40
  * @FilePath: /The_Movie_App/app/(tabs)/search.tsx
  */
 import {
@@ -12,7 +12,7 @@ import {
   FlatList,
   ActivityIndicator,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { images } from "@/constants/images";
 import MovieCard from "@/components/MovieCard";
 import useFetch from "@/services/useFetch";
@@ -21,12 +21,14 @@ import { icons } from "@/constants/icons";
 import SearchBar from "@/components/SearchBar";
 
 const search = () => {
+  // search term save
+  const [searchQuery, setSearchQuery] = useState("");
   // fetch the movies
   const {
     data: movies,
     loading: moviesLoading,
     error: moviesError,
-  } = useFetch(() => fetchMovies({ query: "" }));
+  } = useFetch(() => fetchMovies({ query: searchQuery }));
 
   return (
     <View className="flex-1 bg-primary">
@@ -61,7 +63,12 @@ const search = () => {
 
             {/* 顶端searchbar */}
             <View className="my-5">
-              <SearchBar placeholder="Search movies..." />
+              <SearchBar
+                placeholder="Search movies..."
+                onPress={function (): void {
+                  throw new Error("Function not implemented.");
+                }}
+              />
             </View>
             {/* 加载条 */}
             {moviesLoading && (
@@ -81,11 +88,12 @@ const search = () => {
             {/* 搜索什么出来的结果 */}
             {!moviesLoading &&
               !moviesError &&
-              "Search Term".trim() &&
+              // 于去除字符串两端的空白字符（包括空格、制表符、换行符等）
+              searchQuery.trim() &&
               movies?.length > 0 && (
                 <Text className="text-xl text-white font-bold">
                   Search Result for {""}
-                  <Text className="text-accent">Search Term</Text>
+                  <Text className="text-purple-400">{searchQuery}</Text>
                 </Text>
               )}
           </>
