@@ -1,5 +1,5 @@
 // track the searches made by user
-import { Client, Databases, Query } from "react-native-appwrite";
+import { Client, Databases, Query, ID } from "react-native-appwrite";
 // expo特性 简化配置dotenv.config()
 const DATABASE_ID = process.env.EXPO_PUBLIC_APPWRITE_DATABASE_ID;
 const COLLECTION_ID = process.env.EXPO_PUBLIC_APPWRITE_COLLECTION_ID;
@@ -36,12 +36,19 @@ export const updateSearchCount = async (query: string, movie: Movie) => {
       );
     } else {
       // 没有就新建
-      await database.createDocument(DATABASE_ID!, COLLECTION_ID!, ID.unique(), {
-        searchterm: query,
-        movie_id: movie.id,
-        count: 1,
-        poster_url: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
-      });
+      await database.createDocument(
+        DATABASE_ID!,
+        COLLECTION_ID!,
+        // ID.unique() 用于生成唯一的文档 ID
+        ID.unique(),
+        {
+          searchterm: query,
+          movie_id: movie.id,
+          count: 1,
+          title: movie.title,
+          poster_url: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
+        },
+      );
     }
   } catch (error) {
     console.log(error);

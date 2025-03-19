@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-03-16 16:47:23
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-03-19 21:26:05
+ * @LastEditTime: 2025-03-19 21:34:52
  * @FilePath: /The_Movie_App/app/(tabs)/search.tsx
  */
 import {
@@ -41,7 +41,10 @@ const search = () => {
     const timeoutId = setTimeout(async () => {
       if (searchQuery.trim()) {
         await loadMovies();
-        updateSearchCount(searchQuery, movies[0]);
+        // 为了trending movies
+        if (movies?.length > 0 && movies[0]) {
+          await updateSearchCount(searchQuery, movies[0]);
+        }
       } else {
         reset();
       }
