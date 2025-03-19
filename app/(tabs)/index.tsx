@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-03-16 15:59:56
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-03-19 22:08:03
+ * @LastEditTime: 2025-03-19 22:10:49
  * @FilePath: /The_Movie_App/app/(tabs)/index.tsx
  */
 
@@ -23,6 +23,7 @@ import useFetch from "@/services/useFetch";
 import { fetchMovies } from "@/services/api";
 import MovieCard from "@/components/MovieCard";
 import { getTrendingMovies } from "@/services/appwrite";
+import TrendingCard from "@/components/TrendingCard";
 export default function Index() {
   // 路由跳转
   const router = useRouter();
@@ -89,9 +90,8 @@ export default function Index() {
                 className="mb-4 mt-3"
                 data={trendingMovies}
                 keyExtractor={(item) => item.movie_id.toString()}
-                renderItem={({ item, index }) => (
-                  <Text className="text-white text-sm"> {item.title}</Text>
-                )}
+                renderItem={({ item, index }) => <TrendingCard movie={item}
+                index={index}/>}
               />
             </View>
           )}
