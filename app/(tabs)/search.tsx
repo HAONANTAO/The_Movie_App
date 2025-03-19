@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-03-16 16:47:23
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-03-19 20:36:53
+ * @LastEditTime: 2025-03-19 20:38:56
  * @FilePath: /The_Movie_App/app/(tabs)/search.tsx
  */
 import {
@@ -59,6 +59,13 @@ const search = () => {
         keyExtractor={(item) => item.id.toString()}
         className="px-5"
         numColumns={3}
+        ListEmptyComponent={
+          !moviesLoading && !moviesError ? (
+            <Text className="text-center text-gray-500">
+              {searchQuery.trim() ? "No movies found" : "Search for movies"}
+            </Text>
+          ) : null
+        }
         // 每一列
         columnWrapperStyle={{
           justifyContent: "center",
