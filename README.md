@@ -1,7 +1,7 @@
 <!--
  * @Date: 1985-10-26 18:15:00
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-03-19 15:28:27
+ * @LastEditTime: 2025-03-19 20:46:08
  * @FilePath: /The_Movie_App/README.md
 -->
 
@@ -11,7 +11,7 @@ NativeWind(like tailwindcss)
 appwrite 后端
 TMDB movies api
 self customize hooks
-
+Backend as service (BaaS)
 figma UI:https://www.figma.com/design/c6NHYQem8G59odVSijIjl2/Movie-App-w%2F-React-Native?node-id=2-2&p=f&t=SXO5s1fyoOvB6g4S-0
 Youtube:https://www.youtube.com/watch?v=f8Z9JyB2EIE&t=44s
 

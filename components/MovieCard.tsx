@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-03-19 18:59:37
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-03-19 19:58:02
+ * @LastEditTime: 2025-03-19 20:42:05
  * @FilePath: /The_Movie_App/components/MovieCard.tsx
  */
 import { icons } from "@/constants/icons";
@@ -38,7 +38,7 @@ const MovieCard = ({
           {/* 评分/5 */}
           <Text className="text-sm text-white font-bold">
             {/* 总分5 */}
-            {Math.round(vote_average / 2)}
+            {(vote_average / 2).toFixed(1)}
           </Text>
         </View>
         {/* 发布时间 */}
