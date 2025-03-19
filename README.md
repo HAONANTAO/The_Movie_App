@@ -1,117 +1,116 @@
-<!--
- * @Date: 1985-10-26 18:15:00
- * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-03-19 20:46:08
- * @FilePath: /The_Movie_App/README.md
--->
+# The Movie App
 
-React Native
-Expo 框架
-NativeWind(like tailwindcss)
-appwrite 后端
-TMDB movies api
-self customize hooks
-Backend as service (BaaS)
-figma UI:https://www.figma.com/design/c6NHYQem8G59odVSijIjl2/Movie-App-w%2F-React-Native?node-id=2-2&p=f&t=SXO5s1fyoOvB6g4S-0
-Youtube:https://www.youtube.com/watch?v=f8Z9JyB2EIE&t=44s
+## 项目简介
 
-# Welcome to your Expo app 👋
+这是一个使用现代技术栈开发的电影应用程序，集成了以下主要技术：
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+- **React Native** - 跨平台移动应用开发框架
+- **Expo** - React Native 开发工具和服务平台
+- **NativeWind** - 类似 Tailwind CSS 的移动端样式解决方案
+- **Appwrite** - 后端即服务 (BaaS) 解决方案
+- **TMDB API** - 电影数据服务
+- **自定义 Hooks** - 优化的状态管理和业务逻辑复用
 
-## 初始化 Expo 项目
+## 功能特点
 
-1. 确保你的开发环境已经安装了以下工具：
+- 电影搜索和浏览
+- 个性化推荐
+- 收藏功能
+- 用户资料管理
+- 响应式设计
 
-   - [Node.js](https://nodejs.org/) (推荐使用 LTS 版本)
-   - npm (Node.js 安装时会自动安装)
+## 开发环境配置
 
-2. 全局安装 Expo CLI：
+### 前置要求
 
-   ```bash
-   npm install -g expo-cli
-   ```
+- Node.js (LTS 版本)
+- npm 或 yarn
+- Expo CLI
 
-3. 创建新的 Expo 项目：
+### 安装步骤
 
-   ```bash
-   npx create-expo-app your-app-name
-   cd your-app-name
-   ```
+1. 克隆项目并安装依赖：
 
-4. 选择项目模板：
-   - 在创建过程中，你可以选择不同的项目模板
-   - 推荐新手选择 blank (TypeScript)模板，它提供了一个干净的 TypeScript 启动环境
+```bash
+git clone [项目地址]
+cd The_Movie_App
+npm install
+```
 
-## 在手机上使用 Expo Go
+2. 配置环境变量：
 
-1. 在你的手机上安装 Expo Go 应用：
+创建 `.env` 文件并配置必要的环境变量：
 
-   - [Android 版本](https://play.google.com/store/apps/details?id=host.exp.exponent)
-   - [iOS 版本](https://apps.apple.com/app/expo-go/id982107779)
+```env
+TMDB_API_KEY=your_api_key
+APPWRITE_ENDPOINT=your_appwrite_endpoint
+APPWRITE_PROJECT_ID=your_project_id
+```
 
-2. 确保你的手机和电脑在同一个 WiFi 网络下
+3. 启动开发服务器：
 
-3. 在项目目录下启动开发服务器：
+```bash
+npm start
+```
 
-   ```bash
-   npx expo start
-   ```
+## 移动端测试
 
-4. 使用 Expo Go 扫描二维码：
+### 使用 Expo Go
 
-   - Android：直接在 Expo Go 应用中扫描终端显示的二维码
-   - iOS：使用相机应用扫描二维码，然后点击弹出的通知
+1. 在移动设备上安装 Expo Go 应用：
 
-5. 开发提示：
-   - 保存代码变更后，应用会自动重新加载
-   - 在设备上摇晃可以打开开发者菜单
-   - 如果连接出现问题，可以尝试使用 tunnel 连接方式：`npx expo start --tunnel`
+   - [Android Play Store](https://play.google.com/store/apps/details?id=host.exp.exponent)
+   - [iOS App Store](https://apps.apple.com/app/expo-go/id982107779)
 
-## 项目结构说明
+2. 确保手机和电脑在同一网络下
 
-项目采用了 Expo 的标准目录结构，主要包含以下目录：
+3. 使用 Expo Go 扫描终端中显示的二维码
 
-### app 目录
+## 项目结构
 
-- 应用的主要路由和页面文件
-- `_layout.tsx`：应用的根布局组件
-- `(tabs)`：包含底部标签栏相关的页面
-  - `_layout.tsx`：标签栏的布局配置
-  - `index.tsx`：首页内容
-  - `explore.tsx`：探索页面
+```
+├── app/                  # 应用主要路由和页面
+│   ├── (tabs)/          # 底部标签页面
+│   ├── movies/          # 电影相关页面
+│   └── _layout.tsx      # 根布局组件
+├── assets/              # 静态资源
+│   ├── fonts/           # 字体文件
+│   ├── icons/           # 图标资源
+│   └── images/          # 图片资源
+├── components/          # 可复用组件
+│   ├── MovieCard.tsx    # 电影卡片组件
+│   ├── SearchBar.tsx    # 搜索栏组件
+│   └── TrendingCard.tsx # 热门电影卡片
+├── constants/           # 常量配置
+├── interfaces/          # TypeScript 接口定义
+├── services/            # API 服务
+│   ├── api.ts           # API 调用
+│   ├── appwrite.ts      # Appwrite 配置
+│   └── useFetch.ts      # 数据获取 Hook
+└── types/               # 类型定义
+```
 
-### assets 目录
+## 主要依赖
 
-- 存放应用的静态资源文件
-- `fonts`：自定义字体文件
-- `images`：应用图标、启动图和其他图片资源
+- expo: ~52.0.38
+- react-native: 0.76.7
+- nativewind: ^4.1.23
+- react-native-appwrite: ^0.7.2
+- 其他依赖详见 package.json
 
-### components 目录
+## 设计资源
 
-- 可复用的 React 组件
-- `Collapsible.tsx`：可折叠内容组件
-- `ExternalLink.tsx`：外部链接组件
-- `HapticTab.tsx`：带触感反馈的标签组件
-- `HelloWave.tsx`：波浪动画组件
-- `ParallaxScrollView.tsx`：视差滚动组件
-- `ThemedText.tsx`：主题文本组件
-- `ThemedView.tsx`：主题视图组件
-- `ui`：UI 相关组件，包含平台特定实现
+- Figma UI 设计: [查看设计稿](https://www.figma.com/design/c6NHYQem8G59odVSijIjl2/Movie-App-w%2F-React-Native?node-id=2-2&p=f&t=SXO5s1fyoOvB6g4S-0)
+- 项目演示视频: [观看视频](https://www.youtube.com/watch?v=f8Z9JyB2EIE&t=44s)
 
-### constants 目录
+## 贡献指南
 
-- 应用的常量配置
-- `Colors.ts`：颜色主题配置
+1. Fork 项目
+2. 创建特性分支 (`git checkout -b feature/AmazingFeature`)
+3. 提交更改 (`git commit -m 'Add some AmazingFeature'`)
+4. 推送到分支 (`git push origin feature/AmazingFeature`)
+5. 开启 Pull Request
 
-### hooks 目录
+## 许可证
 
-- 自定义 React Hooks
-- `useColorScheme.ts`：颜色主题 Hook
-- `useThemeColor.ts`：主题颜色 Hook
-
-### 配置文件
-
-- `package.json`：项目依赖和脚本配置
-- `tsconfig.json`：TypeScript 配置
-- `app.json`：Expo 应用配置
+本项目采用 MIT 许可证 - 查看 [LICENSE](LICENSE) 文件了解详情
