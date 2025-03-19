@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-03-16 15:59:56
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-03-19 21:54:43
+ * @LastEditTime: 2025-03-19 22:08:03
  * @FilePath: /The_Movie_App/app/(tabs)/index.tsx
  */
 
@@ -80,7 +80,13 @@ export default function Index() {
               <Text className="text-lg text-white mb-3 font-bold">
                 TOP-5 Trending Movies
               </Text>
+              {/* trending shows */}
               <FlatList
+                horizontal
+                showsHorizontalScrollIndicator
+                // 分割组件
+                ItemSeparatorComponent={() => <View className="w-4" />}
+                className="mb-4 mt-3"
                 data={trendingMovies}
                 keyExtractor={(item) => item.movie_id.toString()}
                 renderItem={({ item, index }) => (
