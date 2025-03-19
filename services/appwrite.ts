@@ -21,7 +21,6 @@ export const updateSearchCount = async (query: string, movie: Movie) => {
     const result = await database.listDocuments(DATABASE_ID!, COLLECTION_ID!, [
       Query.equal("searchterm", query),
     ]);
-    console.log("结果：", result);
 
     // 先查找有没有这个词条，有就增加count;
 
@@ -58,4 +57,22 @@ export const updateSearchCount = async (query: string, movie: Movie) => {
   // if a document is found increment the searchCount field
   // if no document is found
   // then create new document in database
+};
+
+// : Promise<
+//   TrendingMovie[] | undefined
+// >
+export const getTrendingMovies = async () => {
+  try {
+    const result = await database.listDocuments(DATABASE_ID!, COLLECTION_ID!, [
+      // top 5
+      Query.limit(5),
+      Query.orderDesc("count"),
+    ]);
+    // 确保返回的数据符合 TrendingMovie 的类型定义
+    return result.documents as unknown as TrendingMovie[];
+  } catch (error) {
+    console.log(error);
+    throw undefined;
+  }
 };

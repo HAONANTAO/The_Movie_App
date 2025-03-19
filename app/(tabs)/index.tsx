@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-03-16 15:59:56
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-03-19 19:39:31
+ * @LastEditTime: 2025-03-19 21:54:43
  * @FilePath: /The_Movie_App/app/(tabs)/index.tsx
  */
 
@@ -22,9 +22,18 @@ import { useRouter } from "expo-router";
 import useFetch from "@/services/useFetch";
 import { fetchMovies } from "@/services/api";
 import MovieCard from "@/components/MovieCard";
+import { getTrendingMovies } from "@/services/appwrite";
 export default function Index() {
   // 路由跳转
   const router = useRouter();
+
+  // top 5 trending movies
+
+  const {
+    data: trendingMovies,
+    loading: trendingLoading,
+    error: trendingError,
+  } = useFetch(() => getTrendingMovies());
 
   // fetch the movies
   const {
@@ -50,21 +59,36 @@ export default function Index() {
       {/* movie loading */}
 
       {/* 先检查是不是加载，然后有没有错误再去显示 */}
-      {moviesLoading ? (
+      {moviesLoading || trendingLoading ? (
         // 加载指示器组件
         <ActivityIndicator
           size="large"
           color="#0000ff"
           className="mt-10 self-center"
         />
-      ) : moviesError ? (
-        <Text>Error:{moviesError?.message}</Text>
+      ) : moviesError || trendingError ? (
+        <Text>Error:{moviesError?.message || trendingError?.message} </Text>
       ) : (
         <View className="flex-1 mt-5">
           <SearchBar
             onPress={() => router.push("/search")}
             placeholder="Search for movies"
           />
+          {/* top 5 */}
+          {trendingMovies && (
+            <View className="mt-10">
+              <Text className="text-lg text-white mb-3 font-bold">
+                TOP-5 Trending Movies
+              </Text>
+              <FlatList
+                data={trendingMovies}
+                keyExtractor={(item) => item.movie_id.toString()}
+                renderItem={({ item, index }) => (
+                  <Text className="text-white text-sm"> {item.title}</Text>
+                )}
+              />
+            </View>
+          )}
           <Text className="text-lg text-white font-bold mt-5 mb-3">
             Latest Movies
           </Text>
