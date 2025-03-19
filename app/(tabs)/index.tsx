@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-03-16 15:59:56
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-03-19 19:16:34
+ * @LastEditTime: 2025-03-19 19:39:31
  * @FilePath: /The_Movie_App/app/(tabs)/index.tsx
  */
 
