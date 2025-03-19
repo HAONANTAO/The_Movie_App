@@ -1,3 +1,12 @@
+/*
+ * @Date: 2025-03-16 17:05:09
+ * @LastEditors: 陶浩南 taoaaron5@gmail.com
+ * @LastEditTime: 2025-03-19 19:20:03
+ * @FilePath: /The_Movie_App/interfaces/interfaces.d.ts
+ */
+// TypeScript 的全局声明：
+// 如果这些接口被定义在了一个带有 declare global 的声明文件中（通常是 .d.ts 文件），那么它们会被自动注入到全局作用域，不需要显式导入。
+
 interface Movie {
   id: number;
   title: string;

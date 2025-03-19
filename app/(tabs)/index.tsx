@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-03-16 15:59:56
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-03-19 19:01:08
+ * @LastEditTime: 2025-03-19 19:16:34
  * @FilePath: /The_Movie_App/app/(tabs)/index.tsx
  */
 
@@ -83,8 +83,7 @@ export default function Index() {
               paddingRight: 5,
               marginBottom: 10,
             }}
-            className="mt-2 pb-32"
-            scrollEnabled={false}></FlatList>
+            className="mt-2 pb-32"></FlatList>
         </View>
       )}
       {/* </ScrollView> */}
