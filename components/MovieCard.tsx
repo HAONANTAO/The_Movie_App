@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-03-19 18:59:37
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-03-19 19:34:21
+ * @LastEditTime: 2025-03-19 19:58:02
  * @FilePath: /The_Movie_App/components/MovieCard.tsx
  */
 import { icons } from "@/constants/icons";
@@ -34,7 +34,6 @@ const MovieCard = ({
           {title}
         </Text>
         <View className="flex-row items-center justify-start gap-x-1">
-          {" "}
           <Image source={icons.star} className="size-4" />
           {/* 评分/5 */}
           <Text className="text-sm text-white font-bold">
