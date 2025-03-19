@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-03-16 16:47:23
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-03-19 20:32:27
+ * @LastEditTime: 2025-03-19 20:36:53
  * @FilePath: /The_Movie_App/app/(tabs)/search.tsx
  */
 import {
@@ -33,15 +33,16 @@ const search = () => {
   } = useFetch(() => fetchMovies({ query: searchQuery }));
 
   // 搜索词条
+  // 为了减少http请求，使用防抖debounce，只执行最后一次
   useEffect(() => {
-    const func = async () => {
+    const timeoutId = setTimeout(async () => {
       if (searchQuery.trim()) {
         await loadMovies();
       } else {
         reset();
       }
-    };
-    func();
+    }, 7000);
+    return () => clearTimeout(timeoutId);
   }, [searchQuery]);
   return (
     <View className="flex-1 bg-primary">
