@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-03-16 15:59:56
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-03-19 17:01:11
+ * @LastEditTime: 2025-03-19 19:01:08
  * @FilePath: /The_Movie_App/app/(tabs)/index.tsx
  */
 
@@ -21,6 +21,7 @@ import SearchBar from "@/components/SearchBar";
 import { useRouter } from "expo-router";
 import useFetch from "@/services/useFetch";
 import { fetchMovies } from "@/services/api";
+import MovieCard from "@/components/MovieCard";
 export default function Index() {
   // 路由跳转
   const router = useRouter();
@@ -73,7 +74,7 @@ export default function Index() {
           <FlatList
             data={movies}
             renderItem={({ item }) => (
-              <Text className="text-white text-sm">{item.title}</Text>
+             <MovieCard/>
             )}
             // 用于为列表中的每一项提供一个唯一的标识符（key）
             keyExtractor={(item) => item.id.toString()}
