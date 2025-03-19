@@ -1,7 +1,8 @@
 /*
+import { TMDB_CONFIG } from './api';
  * @Date: 2025-03-19 14:53:42
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-03-19 21:19:29
+ * @LastEditTime: 2025-03-19 22:34:37
  * @FilePath: /The_Movie_App/services/api.ts
  */
 
@@ -38,4 +39,26 @@ export const fetchMovies = async ({ query }: { query: string }) => {
   const data = await response.json();
 
   return data.results;
+};
+
+export const fetchMovieDetails = async (
+  movieId: string,
+): Promise<MovieDetails> => {
+  try {
+    const response = await fetch(
+      `${TMDB_CONFIG.BASE_URL}/movie/${movieId}?api_key=${TMDB_CONFIG.API_KEY}`,{
+      method:"GET",
+      headers:TMDB_CONFIG.headers
+    });
+
+    if(!response.ok){throw new Error("Failed to fetch movie details")}
+
+    // ok
+    const data = await response.json()
+
+    return data;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
 };
