@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-03-19 14:53:42
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-03-19 16:12:26
+ * @LastEditTime: 2025-03-19 21:19:29
  * @FilePath: /The_Movie_App/services/api.ts
  */
 
@@ -36,6 +36,6 @@ export const fetchMovies = async ({ query }: { query: string }) => {
   }
   // 获取成功
   const data = await response.json();
-  console.log("获取电影", data);
+
   return data.results;
 };

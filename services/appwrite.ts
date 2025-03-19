@@ -17,10 +17,11 @@ const database = new Databases(client);
 // 看看搜索频率记录做trending测试
 export const updateSearchCount = async (query: string, movie: Movie) => {
   // 查询条件下的所有内容
+  console.log("test");
   const result = await database.listDocuments(DATABASE_ID!, COLLECTION_ID!, [
-    Query.equal("searchTerm", query),
+    Query.equal("searchterm", query),
   ]);
-  console.log(result);
+  console.log("结果：", result);
   // 先查找有没有这个词条，有就增加count;
   // 没有就新建
   // check if a record of that search has already been store

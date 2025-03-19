@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-03-16 16:47:23
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-03-19 20:38:56
+ * @LastEditTime: 2025-03-19 21:26:05
  * @FilePath: /The_Movie_App/app/(tabs)/search.tsx
  */
 import {
@@ -19,6 +19,7 @@ import useFetch from "@/services/useFetch";
 import { fetchMovies } from "@/services/api";
 import { icons } from "@/constants/icons";
 import SearchBar from "@/components/SearchBar";
+import { updateSearchCount } from "@/services/appwrite";
 
 const search = () => {
   // search term save
@@ -35,13 +36,16 @@ const search = () => {
   // 搜索词条
   // 为了减少http请求，使用防抖debounce，只执行最后一次
   useEffect(() => {
+    // 只看第一个 for trending
+
     const timeoutId = setTimeout(async () => {
       if (searchQuery.trim()) {
         await loadMovies();
+        updateSearchCount(searchQuery, movies[0]);
       } else {
         reset();
       }
-    }, 7000);
+    }, 700);
     return () => clearTimeout(timeoutId);
   }, [searchQuery]);
   return (
