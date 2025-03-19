@@ -73,9 +73,7 @@ export default function Index() {
             对于大量数据的展示非常高效。 */}
           <FlatList
             data={movies}
-            renderItem={({ item }) => (
-             <MovieCard/>
-            )}
+            renderItem={({ item }) => <MovieCard {...item} />}
             // 用于为列表中的每一项提供一个唯一的标识符（key）
             keyExtractor={(item) => item.id.toString()}
             numColumns={3}
