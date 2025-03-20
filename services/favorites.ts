@@ -25,7 +25,7 @@ export const addToFavorites = async (movie: Movie, userId: string) => {
         movie_id: movie.id,
         user_id: userId,
         title: movie.title,
-        poster_url: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
+        poster_path: movie.poster_path,
         overview: movie.overview,
         vote_average: movie.vote_average,
         release_date: movie.release_date,

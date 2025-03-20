@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-03-16 16:50:14
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-03-20 18:43:51
+ * @LastEditTime: 2025-03-20 21:20:48
  * @FilePath: /The_Movie_App/app/movies/[id].tsx
  */
 import {
@@ -12,11 +12,16 @@ import {
   Image,
   TouchableOpacity,
 } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { router, useLocalSearchParams } from "expo-router";
 import useFetch from "@/services/useFetch";
 import { fetchMovieDetails } from "@/services/api";
 import { icons } from "@/constants/icons";
+import {
+  addToFavorites,
+  removeFromFavorites,
+  isMovieFavorited,
+} from "@/services/favorites";
 
 interface MovieInfoProps {
   label: string;
@@ -33,10 +38,53 @@ const MovieInfo = ({ label, value }: MovieInfoProps) => (
 );
 const MovieDetails = () => {
   const { id } = useLocalSearchParams();
+  const [isFavorite, setIsFavorite] = useState(false);
+  const [userId, setUserId] = useState("user123"); // 临时使用固定用户ID，实际应从登录状态获取
 
   const { data: movie, loading } = useFetch(() =>
     fetchMovieDetails(id as string),
   );
+
+  useEffect(() => {
+    if (movie?.id && userId) {
+      checkFavoriteStatus();
+    }
+  }, [movie?.id, userId]);
+
+  const checkFavoriteStatus = async () => {
+    try {
+      const status = await isMovieFavorited(Number(movie?.id), userId);
+      setIsFavorite(status);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const toggleFavorite = async () => {
+    try {
+      if (isFavorite) {
+        await removeFromFavorites(Number(movie?.id), userId);
+      } else {
+        const movieData: Movie = {
+          movie_id: movie!.id,
+          id: movie!.id,
+          title: movie!.title,
+          poster_url: movie!.poster_path,
+          overview: movie!.overview || "",
+
+          poster_path: movie!.poster_path || "",
+          release_date: movie!.release_date,
+
+          vote_average: movie!.vote_average,
+          vote_count: movie!.vote_count,
+        };
+        await addToFavorites(movieData, userId);
+      }
+      setIsFavorite(!isFavorite);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <View className="flex-1 bg-primary">
       {/* 提供更好的视觉体验，不会让内容紧贴底部 */}
@@ -70,6 +118,9 @@ const MovieDetails = () => {
               <Text className="text-sm text-light-100">
                 [{movie?.vote_count} votes]
               </Text>
+              <TouchableOpacity onPress={toggleFavorite} className="ml-2">
+                <Text className="text-2xl">{isFavorite ? "❤️" : "🤍"}</Text>
+              </TouchableOpacity>
             </View>
             {/* overview description */}
             <MovieInfo label="Overview" value={movie?.overview} />

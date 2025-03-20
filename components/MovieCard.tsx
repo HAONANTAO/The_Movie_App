@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-03-19 18:59:37
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-03-19 20:42:05
+ * @LastEditTime: 2025-03-20 22:48:52
  * @FilePath: /The_Movie_App/components/MovieCard.tsx
  */
 import { icons } from "@/constants/icons";
@@ -30,27 +30,23 @@ const MovieCard = ({
           className="w-full h-52 rounded-lg"
           resizeMode="cover"
         />
-        <Text className="text-white text-sm font-bold mt-2" numberOfLines={1}>
+        <Text className="mt-2 text-sm font-bold text-white" numberOfLines={1}>
           {title}
         </Text>
-        <View className="flex-row items-center justify-start gap-x-1">
+        <View className="flex-row gap-x-1 justify-start items-center">
           <Image source={icons.star} className="size-4" />
           {/* 评分/5 */}
-          <Text className="text-sm text-white font-bold">
+          <Text className="text-sm font-bold text-white">
             {/* 总分5 */}
             {(vote_average / 2).toFixed(1)}
           </Text>
         </View>
         {/* 发布时间 */}
-        <View className="flex-row items-center justify-between">
-          <Text className="text-sm text-light-300 font-medium mt-1">
+        <View className="flex-row justify-between items-center">
+          <Text className="mt-1 text-sm font-medium text-light-300">
             {/* 只有年份 */}
             {release_date?.split("-")[0]}
           </Text>
-          {/* 分类 */}
-          {/* <Text className="text-xs font-medium text-light-300 uppercase">
-            category
-          </Text> */}
         </View>
       </TouchableOpacity>
     </Link>
