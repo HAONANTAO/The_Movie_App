@@ -84,3 +84,21 @@ interface TrendingCardProps {
   movie: TrendingMovie;
   index: number;
 }
+
+interface User {
+  $id: string;
+  username: string;
+  email: string;
+  created_at: string;
+}
+
+interface FavoriteMovie {
+  $id: string;
+  movie_id: number;
+  user_id: string;
+  title: string;
+  poster_url: string;
+  overview: string;
+  vote_average: number;
+  release_date: string;
+}

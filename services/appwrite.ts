@@ -59,9 +59,6 @@ export const updateSearchCount = async (query: string, movie: Movie) => {
   // then create new document in database
 };
 
-// : Promise<
-//   TrendingMovie[] | undefined
-// >
 export const getTrendingMovies = async () => {
   try {
     const result = await database.listDocuments(DATABASE_ID!, COLLECTION_ID!, [
@@ -76,3 +73,5 @@ export const getTrendingMovies = async () => {
     throw undefined;
   }
 };
+
+//the movie
