@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-03-16 16:47:16
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-03-20 22:56:40
+ * @LastEditTime: 2025-03-20 23:11:40
  * @FilePath: /The_Movie_App/app/(tabs)/save.tsx
  */
 import {
@@ -79,7 +79,7 @@ const save = () => {
         renderItem={({ item }) => (
           <MovieCard
             id={item.movie_id}
-            poster_path={item.poster_url}
+            poster_path={item.poster_path}
             title={item.title}
             vote_average={item.vote_average}
             release_date={item.release_date}
