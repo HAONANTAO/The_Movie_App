@@ -6,7 +6,11 @@ The Movie App is a modern movie information application that provides users with
 
 ## Demo
 
-![Demo Video](Demo.mp4)
+<video width="100%" controls>
+  <source src="https://raw.githubusercontent.com/username/repository/main/Demo.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
 
 ## Technology Stack
 
@@ -62,7 +66,7 @@ The Movie App is a modern movie information application that provides users with
 1. Clone the project:
 
 ```bash
-git clone https://github.com/yourusername/The_Movie_App.git
+git clone https://github.com/HAONANTAO/The_Movie_App.git
 cd The_Movie_App
 ```
 
@@ -86,9 +90,7 @@ APPWRITE_PROJECT_ID=your_project_id
 4. Start the development server:
 
 ```bash
-yarn start
-# or using npm
-npm start
+npx expo start
 ```
 
 ## Testing Guide
@@ -102,12 +104,10 @@ npm start
 
 2. After starting the development server, scan the QR code displayed in the terminal with your phone
 
-3. Run unit tests:
+3. Run command:
 
 ```bash
-yarn test
-# or using npm
-npm test
+npx expo start
 ```
 
 ### Fork Testing Process
@@ -117,7 +117,7 @@ npm test
 2. Clone your forked repository:
 
 ```bash
-git clone https://github.com/your-username/The_Movie_App.git
+git clone https://github.com/HAONANTAO/The_Movie_App.git
 ```
 
 3. Set up upstream repository:
