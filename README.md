@@ -1,116 +1,207 @@
 # The Movie App
 
-## 项目简介
+## Introduction
 
-这是一个使用现代技术栈开发的电影应用程序，集成了以下主要技术：
+The Movie App is a modern movie information application that provides users with rich movie content and personalized services. This project uses the latest technology stack to create a smooth user experience and efficient development process.
 
-- **React Native** - 跨平台移动应用开发框架
-- **Expo** - React Native 开发工具和服务平台
-- **NativeWind** - 类似 Tailwind CSS 的移动端样式解决方案
-- **Appwrite** - 后端即服务 (BaaS) 解决方案
-- **TMDB API** - 电影数据服务
-- **自定义 Hooks** - 优化的状态管理和业务逻辑复用
+## Demo
 
-## 功能特点
+![Demo Video](Demo.mp4)
 
-- 电影搜索和浏览
-- 个性化推荐
-- 收藏功能
-- 用户资料管理
-- 响应式设计
+## Technology Stack
 
-## 开发环境配置
+### Frontend
 
-### 前置要求
+- **React Native** - JavaScript framework for building cross-platform native applications
+- **Expo** - Tools and services platform that simplifies React Native development
+- **NativeWind** - Mobile styling solution based on Tailwind CSS, providing intuitive styling development experience
 
-- Node.js (LTS 版本)
-- npm 或 yarn
-- Expo CLI
+### Backend Services
 
-### 安装步骤
+- **Appwrite** - Open-source Backend-as-a-Service (BaaS) platform providing user authentication, data storage, and other services
+- **TMDB API** - Provides rich movie data services
 
-1. 克隆项目并安装依赖：
+### Development Tools
+
+- **TypeScript** - Adds static type checking to JavaScript
+- **Custom Hooks** - For state management and business logic reuse
+- **Tailwind CSS** - Utility-first CSS framework for building modern UIs
+
+## Core Features
+
+### Movie Browsing & Search
+
+- Popular movies showcase
+- Detailed movie information
+- Smart search recommendations
+- Category browsing
+
+### Personalization
+
+- User favorites management
+- Watch history
+- Personalized recommendations
+- User rating system
+
+### User System
+
+- Account registration and login
+- Profile management
+- Preference settings
+
+## Development Setup
+
+### System Requirements
+
+- Node.js 16.0 or higher
+- npm 7.0+ or yarn 1.22+
+- iOS 13.0+ / Android 6.0+
+
+### Local Development
+
+1. Clone the project:
 
 ```bash
-git clone [项目地址]
+git clone https://github.com/yourusername/The_Movie_App.git
 cd The_Movie_App
+```
+
+2. Install dependencies:
+
+```bash
+yarn install
+# or using npm
 npm install
 ```
 
-2. 配置环境变量：
-
-创建 `.env` 文件并配置必要的环境变量：
+3. Configure environment variables:
+   Create a `.env` file and set the following variables:
 
 ```env
-TMDB_API_KEY=your_api_key
+TMDB_API_KEY=your_tmdb_api_key
 APPWRITE_ENDPOINT=your_appwrite_endpoint
 APPWRITE_PROJECT_ID=your_project_id
 ```
 
-3. 启动开发服务器：
+4. Start the development server:
 
 ```bash
+yarn start
+# or using npm
 npm start
 ```
 
-## 移动端测试
+## Testing Guide
 
-### 使用 Expo Go
+### Local Testing
 
-1. 在移动设备上安装 Expo Go 应用：
+1. Install Expo Go app:
 
-   - [Android Play Store](https://play.google.com/store/apps/details?id=host.exp.exponent)
-   - [iOS App Store](https://apps.apple.com/app/expo-go/id982107779)
+   - iOS: [App Store](https://apps.apple.com/app/expo-go/id982107779)
+   - Android: [Google Play](https://play.google.com/store/apps/details?id=host.exp.exponent)
 
-2. 确保手机和电脑在同一网络下
+2. After starting the development server, scan the QR code displayed in the terminal with your phone
 
-3. 使用 Expo Go 扫描终端中显示的二维码
+3. Run unit tests:
 
-## 项目结构
-
-```
-├── app/                  # 应用主要路由和页面
-│   ├── (tabs)/          # 底部标签页面
-│   ├── movies/          # 电影相关页面
-│   └── _layout.tsx      # 根布局组件
-├── assets/              # 静态资源
-│   ├── fonts/           # 字体文件
-│   ├── icons/           # 图标资源
-│   └── images/          # 图片资源
-├── components/          # 可复用组件
-│   ├── MovieCard.tsx    # 电影卡片组件
-│   ├── SearchBar.tsx    # 搜索栏组件
-│   └── TrendingCard.tsx # 热门电影卡片
-├── constants/           # 常量配置
-├── interfaces/          # TypeScript 接口定义
-├── services/            # API 服务
-│   ├── api.ts           # API 调用
-│   ├── appwrite.ts      # Appwrite 配置
-│   └── useFetch.ts      # 数据获取 Hook
-└── types/               # 类型定义
+```bash
+yarn test
+# or using npm
+npm test
 ```
 
-## 主要依赖
+### Fork Testing Process
 
-- expo: ~52.0.38
-- react-native: 0.76.7
-- nativewind: ^4.1.23
-- react-native-appwrite: ^0.7.2
-- 其他依赖详见 package.json
+1. Fork this project on GitHub
 
-## 设计资源
+2. Clone your forked repository:
 
-- Figma UI 设计: [查看设计稿](https://www.figma.com/design/c6NHYQem8G59odVSijIjl2/Movie-App-w%2F-React-Native?node-id=2-2&p=f&t=SXO5s1fyoOvB6g4S-0)
-- 项目演示视频: [观看视频](https://www.youtube.com/watch?v=f8Z9JyB2EIE&t=44s)
+```bash
+git clone https://github.com/your-username/The_Movie_App.git
+```
 
-## 贡献指南
+3. Set up upstream repository:
 
-1. Fork 项目
-2. 创建特性分支 (`git checkout -b feature/AmazingFeature`)
-3. 提交更改 (`git commit -m 'Add some AmazingFeature'`)
-4. 推送到分支 (`git push origin feature/AmazingFeature`)
-5. 开启 Pull Request
+```bash
+git remote add upstream https://github.com/original-owner/The_Movie_App.git
+```
 
-## 许可证
+4. Create a new feature branch:
 
-本项目采用 MIT 许可证 - 查看 [LICENSE](LICENSE) 文件了解详情
+```bash
+git checkout -b feature/your-feature-name
+```
+
+5. Commit your changes:
+
+```bash
+git add .
+git commit -m "feat: add new feature"
+git push origin feature/your-feature-name
+```
+
+6. Create a Pull Request on GitHub
+
+## Project Structure
+
+```
+├── app/                  # Main application routes and pages
+│   ├── (tabs)/          # Bottom tab pages
+│   ├── movies/          # Movie-related pages
+│   └── _layout.tsx      # Root layout component
+├── assets/              # Static assets
+│   ├── fonts/          # Font files
+│   ├── icons/          # Icon resources
+│   └── images/         # Image resources
+├── components/          # Reusable components
+│   ├── MovieCard.tsx   # Movie card component
+│   ├── SearchBar.tsx   # Search bar component
+│   └── TrendingCard.tsx # Trending movie card
+├── constants/           # Configuration constants
+├── interfaces/          # TypeScript interface definitions
+├── services/            # API services
+│   ├── api.ts          # API calls
+│   ├── appwrite.ts     # Appwrite configuration
+│   └── useFetch.ts     # Data fetching Hook
+└── types/              # Type definitions
+```
+
+## Contribution Guidelines
+
+We welcome all forms of contributions, including but not limited to:
+
+- New feature proposals
+- Bug fixes
+- Documentation improvements
+- Performance optimizations
+
+### Contribution Process
+
+1. Create a new issue describing the problem or feature you want to address
+2. Fork the project and create your feature branch
+3. Write code and tests
+4. Ensure code meets project standards and passes all tests
+5. Submit a Pull Request
+
+### Code Standards
+
+- Follow TypeScript best practices
+- Use ESLint for code checking
+- Write clear commit messages following Conventional Commits specification
+- Keep code simple and add necessary comments
+
+## Versioning
+
+This project follows [Semantic Versioning](https://semver.org/) - format: MAJOR.MINOR.PATCH
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
+
+## Contact Us
+
+For any questions or suggestions, please reach out through:
+
+- Submit an Issue
+- Send a Pull Request
+- Project Discussion Board
