@@ -6,10 +6,9 @@ The Movie App is a modern movie information application that provides users with
 
 ## Demo
 
-<video width="100%" controls>
-  <source src="https://raw.githubusercontent.com/username/repository/main/Demo.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+[![Demo Video](Demo.jpg)](https://haonantao.github.io/The_Movie_App/Demo.mp4)
+
+
 
 
 ## Technology Stack
