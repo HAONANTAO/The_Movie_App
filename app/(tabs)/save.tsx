@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-03-16 16:47:16
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-03-21 15:30:26
+ * @LastEditTime: 2025-03-21 15:43:02
  * @FilePath: /The_Movie_App/app/(tabs)/save.tsx
  */
 import {
@@ -26,17 +26,24 @@ const save = () => {
   const [userId, setUserId] = useState<string | null>(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  useFocusEffect(() => {
-    checkLoginStatus();
-  });
+  // 解决了useEffect只会执行一次和
+  // UseFocusEffect每次都一直执行（焦点获取）
+  // 用React.useCallback优化性能，避免不必要的渲染，
+  // ，表示这个回调函数只在组件挂载或页面聚焦时运行一次，之后会保持缓存的函数引用。
+  // 如果你不使用 useCallback，React 每次渲染时都会重新创建一个新的函数引用，而 useFocusEffect 会检测到这是一个新的函数，从而导致重复执行。
+  useFocusEffect(
+    React.useCallback(() => {
+      checkLoginStatus();
+    }, []),
+  );
 
   const checkLoginStatus = async () => {
     try {
       const userInfo = await AsyncStorage.getItem("@user_info");
-      console.log("用户信息", userInfo);
+
       if (userInfo) {
         const user = JSON.parse(userInfo);
-        console.log("parse之后的", user);
+        console.log(user);
         setUserId(user.userId);
         setIsLoggedIn(true);
         loadFavorites(user.userId);
