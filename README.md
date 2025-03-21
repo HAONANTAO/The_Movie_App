@@ -6,8 +6,11 @@ The Movie App is a modern movie information application that provides users with
 
 ## Demo
 
-[![Demo Video](Demo.jpg)](https://haonantao.github.io/The_Movie_App/Demo.mp4)
-
+<p align="center">
+  <a href="https://haonantao.github.io/The_Movie_App/Demo.mp4" target="_blank">
+    <img src="Demo.jpg" alt="Demo Video" width="600" style="cursor: pointer;"/>
+  </a>
+</p>
 
 
 
