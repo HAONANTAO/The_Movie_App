@@ -6,21 +6,56 @@ import {
   TextInput,
   TouchableOpacity,
 } from "react-native";
-import React, { useState } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import React, { useState, useEffect } from "react";
 import { icons } from "@/constants/icons";
 import { createUser, getUserByEmail, verifyPassword } from "@/services/users";
 
 const Profile = () => {
+  useEffect(() => {
+    const checkUserSession = async () => {
+      try {
+        const userInfo = await AsyncStorage.getItem("@user_info");
+        if (userInfo) {
+          const parsedUserInfo = JSON.parse(userInfo);
+          const user = await getUserByEmail(parsedUserInfo.email);
+          if (user) {
+            //免登录
+            setCurrentUser({
+              email: user.email,
+              userId: user.$id,
+              username: user.username,
+            });
+            setSuccess(true);
+          }
+        }
+      } catch (error) {
+        console.error("Error checking user session:", error);
+      }
+    };
+    checkUserSession();
+  }, []);
   const [isLogin, setIsLogin] = useState(true);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
-  const [currentUser, setCurrentUser] = useState<User | null>(null);
+  const [currentUser, setCurrentUser] = useState<{
+    email: string;
+    userId: string;
+    username: string;
+  } | null>(null);
+
+  // type StoredUserInfo = {
+  //   email: string;
+  //   userId: string;
+  //   username: string;
+  // };
 
   const handleLogin = async () => {
     try {
+      await AsyncStorage.removeItem("@user_info");
       if (!email || !password) {
         setError("请填写邮箱和密码");
         return;
@@ -35,14 +70,27 @@ const Profile = () => {
         setError("用户不存在");
         return;
       }
-      const isValidPassword = await verifyPassword(password, user.password);
+      const isValidPassword = verifyPassword(password, user.password);
       if (!isValidPassword) {
         setError("密码错误");
         return;
       }
       setSuccess(true);
       setError("");
-      setCurrentUser(user as unknown as User);
+      const userInfo = {
+        email: user.email,
+        userId: user.$id,
+        username: user.username,
+      };
+      setCurrentUser(userInfo);
+      await AsyncStorage.setItem(
+        "@user_info",
+        JSON.stringify({
+          email: user.email,
+          userId: user.$id,
+          username: user.username,
+        }),
+      );
     } catch (err) {
       setError("登录失败，请重试");
       console.error(err);
@@ -63,19 +111,33 @@ const Profile = () => {
       const user = await createUser(username, email, password);
       setSuccess(true);
       setError("");
-      setCurrentUser(user as User);
+      const userInfo = {
+        email: (user as { email: string }).email,
+        userId: (user as any).$id,
+        username: (user as any).username,
+      };
+      setCurrentUser(userInfo);
+      await AsyncStorage.setItem(
+        "@user_info",
+        JSON.stringify({
+          email: (user as any).email,
+          userId: (user as any).$id,
+          username: (user as any).username,
+        }),
+      );
     } catch (err) {
       setError("注册失败，请重试");
       console.error(err);
     }
   };
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
     setCurrentUser(null);
     setSuccess(false);
     setEmail("");
     setPassword("");
     setUsername("");
+    await AsyncStorage.removeItem("@user_info");
   };
 
   if (currentUser) {

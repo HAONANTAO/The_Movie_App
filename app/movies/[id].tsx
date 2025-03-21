@@ -12,6 +12,7 @@ import {
   Image,
   TouchableOpacity,
 } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, { useEffect, useState } from "react";
 import { router, useLocalSearchParams } from "expo-router";
 import useFetch from "@/services/useFetch";
@@ -39,11 +40,26 @@ const MovieInfo = ({ label, value }: MovieInfoProps) => (
 const MovieDetails = () => {
   const { id } = useLocalSearchParams();
   const [isFavorite, setIsFavorite] = useState(false);
-  const [userId, setUserId] = useState("user123"); // 临时使用固定用户ID，实际应从登录状态获取
+  const [userId, setUserId] = useState<string | null>(null);
 
   const { data: movie, loading } = useFetch(() =>
     fetchMovieDetails(id as string),
   );
+
+  useEffect(() => {
+    const getUserInfo = async () => {
+      try {
+        const userInfo = await AsyncStorage.getItem("@user_info");
+        if (userInfo) {
+          const user = JSON.parse(userInfo);
+          setUserId(user.userId);
+        }
+      } catch (error) {
+        console.error("Error getting user info:", error);
+      }
+    };
+    getUserInfo();
+  }, []);
 
   useEffect(() => {
     if (movie?.id && userId) {
@@ -53,7 +69,10 @@ const MovieDetails = () => {
 
   const checkFavoriteStatus = async () => {
     try {
-      const status = await isMovieFavorited(Number(movie?.id), userId);
+      const status = await isMovieFavorited(
+        Number(movie?.id),
+        userId as string,
+      );
       setIsFavorite(status);
     } catch (error) {
       console.log(error);
@@ -63,7 +82,7 @@ const MovieDetails = () => {
   const toggleFavorite = async () => {
     try {
       if (isFavorite) {
-        await removeFromFavorites(Number(movie?.id), userId);
+        await removeFromFavorites(Number(movie?.id), userId as string);
       } else {
         const movieData: Movie = {
           movie_id: movie!.id,
@@ -78,7 +97,7 @@ const MovieDetails = () => {
           vote_average: movie!.vote_average,
           vote_count: movie!.vote_count,
         };
-        await addToFavorites(movieData, userId);
+        await addToFavorites(movieData, userId as string);
       }
       setIsFavorite(!isFavorite);
     } catch (error) {
